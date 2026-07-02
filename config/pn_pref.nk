@@ -1,0 +1,41 @@
+Preferences {
+    inputs 0
+    name Preferences
+    
+    addUserKnob {20 pn_tab l PrettyNuke}
+    addUserKnob {26 pn_logo l "" +STARTLINE T "\n<br><font size=7>  Pretty<font color=\"#e09232\"><font size=7><b>Nuke</color><br>"}
+    addUserKnob {26 ""}
+    addUserKnob {4 pn_select_theme l "Select Theme: " M {"" "" "" ""}}
+    addUserKnob {22 pn_apply_theme l "Apply Theme" T "import PrettyNuke\n\nPrettyNuke.apply_theme()" +STARTLINE}
+    addUserKnob {22 pn_refresh_themes l "Refresh Themes" -STARTLINE T "import PrettyNuke\n\nPrettyNuke.load_themes()\n\nnuke.message(\"PrettyNuke themes have been loaded!\")"}
+    addUserKnob {22 pn_delete_theme l "Delete Theme" -STARTLINE T "import PrettyNuke\n\nPrettyNuke.delete_theme()"}
+    addUserKnob {22 pn_open_themes_folder l "Open Themes Folder" -STARTLINE T "import PrettyNuke\nimport os\n\nos.startfile(PrettyNuke.THEMES_DIR)\n"}
+    addUserKnob {26 ""}
+    addUserKnob {6 color_rgb_panelDropped l "panel dropped state" +HIDDEN +STARTLINE}
+    color_rgb_panelDropped true
+    addUserKnob {20 pn_custom_colors_group l "Custom Colors" n 1}
+    pn_custom_colors_group 0
+    addUserKnob {40 pn_bg_color l "BG Color"}
+    pn_bg_color 0xc1119ff
+    addUserKnob {40 pn_fg_color l "FG Color" -STARTLINE}
+    pn_fg_color 0x70a0fff
+    addUserKnob {40 pn_accent_color l "Accent Color" -STARTLINE}
+    pn_accent_color 0xff7fccff
+    addUserKnob {40 pn_input_arrows_color l "Input Arrows Color" -STARTLINE}
+    pn_input_arrows_color 0xff7fccff
+    addUserKnob {40 pn_viewer_fg_color l "Viewer FG Color" -STARTLINE}
+    pn_viewer_fg_color 0xff7fccff
+    addUserKnob {26 text l " "}
+    addUserKnob {22 pn_apply_custom_colors l "Apply Custom Colors" T "this_node = nuke.thisNode()\nprefs = nuke.toNode(\"preferences\")\n\n\ndef apply_custom_colors(color_knobs, color_value):\n    for knob in color_knobs:\n        prefs\[knob].setValue(color_value)\n\n\n# COLORS LIST\nbg_color_list = \[\"UIBaseColor\", \"DopeSheetTimeline\", \"DAGBackColor\", \"UIButtonColor\"]\nfg_color_list = \[\"UIBackColor\", \"DopeSheetBackground\", \"viewer_bg_color_3D\"]\naccent_color_list = \[\"UIHighlightColor\", \"UIFrameSliderHeadColor\", \"UIFrameSliderInOutColor\", \"DopeSheetCurrentFrame\", \"DopeSheetSelectedKey\", \"OverlayColor\", \"SelectedColor\"]\ninput_arrows_color_list = \[\"ArrowColorLeft\", \"ArrowColorRight\", \"ArrowColorUp\", \"ArrowColorDown\"]\nviewer_fg_color_list = \[\"viewer_fg_color\", \"viewer_fg_color_3D\"]\n\n# GET PN BUTTON COLORS\nbg_color_value = this_node\[\"pn_bg_color\"].value()\nfg_color_value = this_node\[\"pn_fg_color\"].value()\naccent_color_value = this_node\[\"pn_accent_color\"].value()\ninput_arrows_color_value = this_node\[\"pn_input_arrows_color\"].value()\nviewer_fg_color_value = this_node\[\"pn_viewer_fg_color\"].value()\n\n# APPLY CUSTOM COLORS\napply_custom_colors(bg_color_list, bg_color_value)\napply_custom_colors(fg_color_list, fg_color_value)\napply_custom_colors(accent_color_list, accent_color_value)\napply_custom_colors(input_arrows_color_list, input_arrows_color_value)\napply_custom_colors(viewer_fg_color_list, viewer_fg_color_value)" +STARTLINE}
+    addUserKnob {26 pn_custom_colors_info l " " T "<br>If you want a full control of all UI colors, you can update all the knob colors manually.\n<br><i>\nPreferences -> Appearance / Node Colors / Node Graph / Viewer Handles.\n<br>"}
+    addUserKnob {26 pn_text_custom_colors l " " T "<i>After updating the custom colors, don't forget to export by clicking on <br>the Export Theme button, and then apply it to the Select Theme dropdown menu."}
+    addUserKnob {20 endGroup n -1}
+    addUserKnob {26 ""}
+    addUserKnob {6 pn_export_node_colors l "Export Node Colors (?)" t "Node colors may not be compatible across different Nuke versions.\n\nIf you export a theme in a newer Nuke version (e.g., Nuke 17), the node colors may not load correctly in older versions (e.g., Nuke 12) due to changes in node categories and internal color knobs." +STARTLINE}
+    addUserKnob {22 pn_export_theme l "Export Theme" T "import PrettyNuke\n\nPrettyNuke.export_theme()\nPrettyNuke.load_themes()" +STARTLINE}
+    addUserKnob {26 ""}
+    addUserKnob {22 pn_remove_prettynuke l "Remove PrettyNuke from Preferences" T "prefs = nuke.toNode(\"preferences\")\npn_tab = prefs.knob(\"pn_tab\")\n\n\nif pn_tab is not None:\n    ask = nuke.ask(\"Would like to remove PrettyNuke from Preferences?\\nThis action cannot be undone.\")\n    if ask:\n        prefs.removeKnob(pn_tab)\n        nuke.message(\"'PrettyNuke' has been removed from Preferences!\\nPlease reopen the Preferences panel!\")" +STARTLINE}
+    addUserKnob {26 pn_title_remove l "   " T "<i>In order to work, this action will edit the preferences file at .nuke directory."}
+    addUserKnob {26 ""}
+    addUserKnob {26 pn_credits l "" +STARTLINE T "Pretty<b><font color=\"#e09232\">Nuke</font></b> v01.0 &copy; 2026</b>\n<p><font size=2>Danilo de Lucio | VFX Compositor & TD.</font>\n<br><a href=\"https://www.danilodelucio.com/\"><font color=\"#bbbbbb\" size=2>www.danilodelucio.com</a> - <a href=\"https://github.com/danilodelucio/PrettyNuke\"><font color=\"#bbbbbb\" size=2>Github</a>"}
+}
