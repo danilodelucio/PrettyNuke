@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------------
 #  PrettyNuke
-#  Version: v01.0
+#  Version: v01.1
 #  Author: Danilo de Lucio
 #  Website: www.danilodelucio.com
 # -----------------------------------------------------------------------------------
@@ -8,7 +8,6 @@
 # -----------------------------------------------------------------------------------
 #  [Summary]
 #  Theme manager for Nuke.
-#
 # -----------------------------------------------------------------------------------
 
 
@@ -18,7 +17,6 @@ import json
 
 
 PRETTYNUKE_DIR = os.path.dirname(os.path.abspath(__file__)).replace("\\", "/")
-# PRETTYNUKE_DIR = r"D:\MEGA\DEV\PrettyNuke".replace("\\", "/")
 
 THEMES_DIR = os.path.join(PRETTYNUKE_DIR, "themes").replace("\\", "/")
 if not os.path.exists(THEMES_DIR):
@@ -75,7 +73,7 @@ UI_COLORS = [
     # NODE GRAPH
     "DAGBackColor",
     "OverlayColor", # Box selection
-    "ArrowColorElbow" # Dots when holding Ctrl
+    "ArrowColorElbow", # Dots when holding Ctrl
 
     "NodeColor",
     "LabelColor",
@@ -161,16 +159,6 @@ NODE_COLORS = [
 ]
 
 
-def check_configFile():
-    if not os.path.exists(CONFIG_FILE):
-        data = {"selected_theme": "PrettyNuke"}
-
-        with open(CONFIG_FILE, "w") as f:
-            json.dump(data, f, indent=2)
-
-    return True
-
-
 def check_themeFiles():
     themes_list = ["<Please select a theme>"]
 
@@ -187,26 +175,6 @@ def check_themeFiles():
     else:
         print("[PrettyNuke Error] - No themes found in themes folder.")
         return False
-
-
-def theme_configFile():
-    themes_list = check_themeFiles()
-
-    if check_configFile():
-        with open(CONFIG_FILE, "r") as f:
-            data = json.load(f)
-            selected_theme = data["selected_theme"]
-
-        if selected_theme not in themes_list:
-            with open(CONFIG_FILE, "w") as f:
-                data = json.load(f)
-                data["selected_theme"] = "PrettyNuke"
-                json.dump(data, f)
-        
-        return selected_theme
-    else:
-        print("[PrettyNuke Error] - Config.json file not found!")
-        return
 
 
 def get_pref_values():
@@ -234,6 +202,30 @@ def get_pref_values():
     return final_dict
 
 
+def export_theme_nk_file(prefDict, themeName):
+    # Nuke file content (txt)
+    lines = []
+    lines.append("Preferences {")
+    lines.append("    inputs 0")
+    lines.append("    name Preferences")
+
+    for knob_name, knob_value in prefDict.items():
+        # Checking if string has space (like font "Segoe UI")
+        if isinstance(knob_value, str) and " " in knob_value:
+            lines.append('    {} "{}"'.format(knob_name, knob_value))
+        else:
+            lines.append("    {} {}".format(knob_name, knob_value))
+
+    lines.append("}")
+    nk_text = "\n".join(lines)
+
+    # Creating Nuke file
+    output_path = os.path.join(THEMES_DIR, themeName + ".nk").replace("\\", "/")
+
+    with open(output_path, "w") as f:
+        f.write(nk_text)
+
+
 def export_theme():
     pref_dict = get_pref_values()
 
@@ -254,6 +246,12 @@ def export_theme():
 
     with open(output_path, "w") as f:
         json.dump(theme_data, f, indent=2)
+
+    # Creating .nk file (if enabled)
+    prefs = nuke.toNode("preferences")
+    export_nk_file_knob = prefs["pn_export_nk_file"].value()
+    if export_nk_file_knob:
+        export_theme_nk_file(pref_dict, theme_name)
 
     nuke.message("Your PrettyNuke Theme has been exported to:\n{}".format(output_path))
 
@@ -279,46 +277,7 @@ def apply_theme():
             finally:
                 pass
 
-        # Updating config.json file
-        # if check_configFile():
-        #     data = {"selected_theme": selected_theme}
-
-        #     with open(CONFIG_FILE, "w") as f:
-        #         json.dump(data, f, indent=2)
-
         nuke.message("The '{}' theme has been applied!".format(selected_theme))
-
-    else:
-        nuke.message("[PrettyNuke Error] - The theme '{}' does not exist!".format(selected_theme))
-
-
-def apply_theme_startup():
-    prefs = nuke.toNode("preferences")
-    selected_theme = prefs["pn_select_theme"].value()
-
-    theme_file = os.path.join(THEMES_DIR, selected_theme + ".json").replace("\\", "/")
-
-    if os.path.exists(theme_file):
-        # Opening Theme.json file
-        with open(theme_file, "r") as f:
-            theme_file_dict = json.load(f)
-
-        for knob_name, knob_value in theme_file_dict.items():
-            try:
-                prefs[knob_name].setValue(knob_value)
-
-            except:
-                print("[PrettyNuke] - '{}' knob not found!".format(knob_name))
-
-            finally:
-                pass
-
-        # Updating config.json file
-        if check_configFile():
-            data = {"selected_theme": selected_theme}
-
-            with open(CONFIG_FILE, "w") as f:
-                json.dump(data, f, indent=2)
 
     else:
         nuke.message("[PrettyNuke Error] - The theme '{}' does not exist!".format(selected_theme))
@@ -334,7 +293,6 @@ def load_themes():
     themes_list = check_themeFiles()
 
     if themes_list:
-        # selected_theme = themes_list[themes_list.index(theme_configFile())]
         selected_theme = themes_list[0]
 
         prefs["pn_select_theme"].setValues(themes_list)
@@ -346,10 +304,7 @@ def delete_theme():
     selected_theme = prefs["pn_select_theme"].value()
 
     theme_file = os.path.join(THEMES_DIR, selected_theme + ".json").replace("\\", "/")
-    ask_msg = (
-            "Delete theme '{}'? \n\n"
-            "This will permanently remove the theme file.\n"
-            "This action cannot be undone.").format(selected_theme)
+    ask_msg = ("Delete theme '{}'? \n\nThis will permanently remove the theme file.\nThis action cannot be undone.").format(selected_theme)
     
     if os.path.exists(theme_file):
         if nuke.ask(ask_msg):
@@ -362,31 +317,6 @@ def delete_theme():
 
 def load_prefsPanel():
     nuke.scriptReadFile(os.path.join(CONFIG_DIR, "pn_pref.nk").replace("\\", "/"))
-
-
-def remove_pn():
-    ask = nuke.ask("Would like to remove PrettyNuke from Preferences?\nThis action cannot be undone.")
-
-    if ask:
-        prefs = nuke.toNode("preferences")
-        pn_tab = prefs.knob("pn_tab")
-
-        if pn_tab is not None:
-            prefs.removeKnob(pn_tab)
-            nuke.message("'PrettyNuke' has been removed from Preferences!\nPlease reopen the Preferences panel!")
-
-
-def pn_to_prefs():
-    prefs = nuke.toNode("preferences")
-    tab_name = "pn_tab"
-
-    if prefs.knob(tab_name) is None:
-        pn_tab = nuke.Tab_Knob(tab_name, "PrettyNuke")        
-        prefs.addKnob(pn_tab)
-        print("Success: 'PrettyNuke' tab added to Preferences.")
-        
-    else:
-        print("Info: 'PrettyNuke' tab already exists.")
 
 
 def open_themes_folder():
