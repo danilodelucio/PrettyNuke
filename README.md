@@ -73,7 +73,7 @@ You can drag and drop the `.nk` files into Nuke without needing to install **Pre
 # 📥 Download & Install
 - Download the latest release of **PrettyNuke**:
 
-👉 [Download FastBackdrop](https://github.com/danilodelucio/FastBackdrop/releases/download/v01.1/FastBackdrop_v01.1.zip)
+👉 [Download PrettyNuke](https://github.com/danilodelucio/PrettyNuke/releases/download/v01.1/PrettyNuke_v01.1.zip)
 
 - Extract the **PrettyNuke** folder and place it inside your `.nuke` directory (usually located at `C:/Users/%USERNAME%/.nuke`).
 
