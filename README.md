@@ -60,8 +60,7 @@ You can create custom themes by opening the **Custom Colors** section and changi
 
 You can drag and drop the `.nk` files into Nuke without needing to install **PrettyNuke**, this will set all color knobs from the selected theme (even for **Nuke Indie**).
 > [!NOTE]
-> _If you choose this approach, don't forget to open the Preferences panel and hit OK._<br>
-> _This is to register the color changes into the preferences file._
+> _If you choose this approach, don't forget to open the Preferences panel and hit OK to register the color changes into the preferences file._
 
 <img width="1146" height="480" alt="drag_and_drop_v1" src="https://github.com/user-attachments/assets/8b0e9bbe-0024-4880-b16f-280699d4a2bd" />
 
