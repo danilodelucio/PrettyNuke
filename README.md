@@ -69,6 +69,9 @@ You can drag and drop the `.nk` files into Nuke without needing to install **Pre
 - **PrettyNuke** was developed and tested in **Nuke 12.1v5** and **Nuke 17.0v3** (written in Python 2 and Python 3), but it's designed to work across all Nuke versions.
 - It works for commercial and non-commercial versions (except Indie due to the Python limitation).
 
+# 📊 Performance
+**PrettyNuke** does not use any kind of callbacks or expressions under the hood. It's designed to be fast and lightweight, without triggering extra code.
+
 # 📥 Download & Install
 - Download the latest release of **PrettyNuke**:
 
