@@ -9,40 +9,47 @@
 
 <img width="1108" height="601" alt="PrettyNuke Preferences v1" src="https://github.com/user-attachments/assets/251d1fe5-7b67-4cd2-a094-738fb3ff9ed8" />
 
-# 🎨 Built-in Themes
+# 📦 Built-in Themes
 **PrettyNuke** comes with 10 ready-to-use themes, all inspired by popular UI themes and carefully set knob by knob. 
 
-- Cyberpunk
-
+## Cyberpunk
 <img width="1920" height="760" alt="Cyberpunk v1 (Large)" src="https://github.com/user-attachments/assets/9996096e-af3f-45ce-89b7-1dbe5353f1b8" />
 
-- Diablo
-
+## Diablo
 <img width="1920" height="762" alt="Diablo v1 (Large)" src="https://github.com/user-attachments/assets/98f74005-5286-4c34-89ad-9a068cbe81d9" />
 
-- Dracula
+## Dracula
 <img width="1920" height="761" alt="Dracula v1 (Large)" src="https://github.com/user-attachments/assets/83787b8d-8e61-4c18-8565-557cb45f8399" />
 
-- Forest
+## Forest
 <img width="1920" height="760" alt="Forest v1 (Large)" src="https://github.com/user-attachments/assets/4d4c96f1-b285-4d60-bc4a-e5d48d8f9f16" />
 
-- Monokai Machine
+## Monokai Machine
 <img width="1920" height="762" alt="Monokai Machine v1 (Large)" src="https://github.com/user-attachments/assets/41ca95f6-f732-4c74-bbff-528721e386fd" />
 
-- Nightwish
+## Nightwish
 <img width="1920" height="761" alt="Nightwish v1 (Large)" src="https://github.com/user-attachments/assets/883673a2-13ba-4790-9bc2-d7335386743f" />
 
-- Nord Polar Night
+## Nord Polar Night
 <img width="1920" height="761" alt="Nord Polar Night v1 (Large)" src="https://github.com/user-attachments/assets/2406ab4b-b253-4c20-a326-198b69aa769c" />
 
-- PrettyNuke
+## PrettyNuke
 <img width="1920" height="760" alt="PrettyNuke v1 (Large)" src="https://github.com/user-attachments/assets/138d216d-6cf1-4220-b8e0-482778eca3a7" />
 
-- Solarized
+## Solarized
 <img width="1920" height="760" alt="Solarized v1 (Large)" src="https://github.com/user-attachments/assets/927fcd16-e372-4d5a-a444-f611eb3961fd" />
 
-- Starcraft
+## Starcraft
 <img width="1920" height="759" alt="Starcraft v1 (Large)" src="https://github.com/user-attachments/assets/ff4ee112-49d5-4e58-89fd-4ff85c33ce70" />
+
+# 🎨 Custom Themes
+You can create custom themes by opening the **Custom Colors** section. 
+
+<img width="780" height="156" alt="image" src="https://github.com/user-attachments/assets/850b5189-3343-4231-9de1-62939cc170ca" />
+
+Alternatively, if you want full control over all UI colors, you can update each knob color manually and then export your theme.
+
+<img width="1050" height="1771" alt="preferences" src="https://github.com/user-attachments/assets/80b00dfd-8bb0-48f9-bab3-0811eed56f05" />
 
 
 # ☢️ Nuke and Python Compatibility
