@@ -9,6 +9,9 @@
 
 <img width="1108" height="601" alt="PrettyNuke Preferences v1" src="https://github.com/user-attachments/assets/251d1fe5-7b67-4cd2-a094-738fb3ff9ed8" />
 
+<img width="1146" height="480" alt="applying_themes_v1" src="https://github.com/user-attachments/assets/c1cd94ca-a8bb-45b2-98f4-c7a7f39df7b6" />
+
+
 # 📦 Built-in Themes
 **PrettyNuke** comes with 10 ready-to-use themes, all inspired by popular UI themes and carefully set knob by knob. 
 
