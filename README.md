@@ -46,9 +46,9 @@
 <img width="1920" height="759" alt="Starcraft v1 (Large)" src="https://github.com/user-attachments/assets/ff4ee112-49d5-4e58-89fd-4ff85c33ce70" />
 
 # 🎨 Custom Themes
-You can create custom themes by opening the **Custom Colors** section. 
+You can create custom themes by opening the **Custom Colors** section and changing the color knobs. 
 
-<img width="780" height="156" alt="image" src="https://github.com/user-attachments/assets/850b5189-3343-4231-9de1-62939cc170ca" />
+<img width="1146" height="480" alt="custom_colors_v1" src="https://github.com/user-attachments/assets/8dbdaf19-1f30-4a71-b993-3f988019dd56" />
 
 Alternatively, if you want full control over all UI colors, you can update each knob color manually and then export your theme.
 
