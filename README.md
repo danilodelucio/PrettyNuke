@@ -49,7 +49,7 @@ You can create custom themes by opening the **Custom Colors** section.
 
 Alternatively, if you want full control over all UI colors, you can update each knob color manually and then export your theme.
 
-<img width="1050" height="1771" alt="preferences" src="https://github.com/user-attachments/assets/80b00dfd-8bb0-48f9-bab3-0811eed56f05" />
+<img width="1050" height="1771" alt="preferences" src="https://github.com/user-attachments/assets/16b6e1df-9b6d-4ca1-bda2-3d886c4ac809" />
 
 
 # ☢️ Nuke and Python Compatibility
